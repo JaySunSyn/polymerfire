@@ -169,7 +169,9 @@ if (typeof Polymer === 'undefined') {
 
         this._firestoreProps = {};
         this._firestoreListeners = {};
-        this.db = this.constructor.db || firebase.firestore();
+        const db = this.constructor.db || firebase.firestore();
+        db.settings({timestampsInSnapshots: true});
+        this.db = db;
       }
 
       connectedCallback() {
